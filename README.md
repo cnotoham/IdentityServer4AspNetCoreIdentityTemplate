@@ -1,20 +1,21 @@
 # An ASP.NET Core IdentityServer4 Identity Template with Bootstrap 4 and Localization
 
- [![Build status](https://ci.appveyor.com/api/projects/status/ibm36ev49bpjf3o9?svg=true)](https://ci.appveyor.com/project/damienbod/identityserver4aspnetcoreidentitytemplate)      [![NuGet Status](http://img.shields.io/nuget/v/IdentityServer4AspNetCoreIdentityTemplate.svg?style=flat-square)](https://www.nuget.org/packages/IdentityServer4AspNetCoreIdentityTemplate/)  [Change log](https://github.com/damienbod/IdentityServer4AspNetCoreIdentityTemplate/blob/master/Changelog.md) 
+[![Build status](https://ci.appveyor.com/api/projects/status/ibm36ev49bpjf3o9?svg=true)](https://ci.appveyor.com/project/damienbod/identityserver4aspnetcoreidentitytemplate) [![NuGet Status](http://img.shields.io/nuget/v/IdentityServer4AspNetCoreIdentityTemplate.svg?style=flat-square)](https://www.nuget.org/packages/IdentityServer4AspNetCoreIdentityTemplate/) [Change log](https://github.com/damienbod/IdentityServer4AspNetCoreIdentityTemplate/blob/master/Changelog.md)
 
 ## Features
 
-- ASP.NET Core 2.1
+- ASP.NET Core 3.1
 - Latest ASP.NET Core Identity
 - Bootstrap 4 UI
-- Localization en-US, de-DE, it-IT, fr-FR, de-CH, gsw-CH
+- Localization en-US, de-DE, it-IT, fr-FR, zh-Hans, es-MX, de-CH, ga-IE, gsw-CH
 - 2FA
 - TOTP
+- FIDO2 MFA
 - Personal data, download, delete (part of Identity)
 - Azure AD, Cert, key vault deployments API
 - SendGrid Email API
 - npm with bundleconfig used for frontend packages
-- EF Core 
+- EF Core
 - Support for ui_locales using OIDC logins
 
 some print screens:
@@ -35,6 +36,10 @@ fr-FR
 
 <img src="https://github.com/damienbod/IdentityServer4AspNetCoreIdentityTemplate/blob/master/images/fr-FR_template.png" alt=""  />
 
+zh-Hans
+
+<img src="https://github.com/damienbod/IdentityServer4AspNetCoreIdentityTemplate/blob/master/images/zh-Hans_template.png" alt=""  />
+
 ## Using the template
 
 ### install
@@ -47,16 +52,25 @@ dotnet new -i IdentityServer4AspNetCoreIdentityTemplate
 
 Locally built nupkg:
 
+```
+dotnet new -i IdentityServer4AspNetCoreIdentityTemplate.5.0.1.nupkg
+```
+
+Local folder:
 
 ```
-dotnet new -i IdentityServer4AspNetCoreIdentityTemplate.1.0.12.nupkg
+dotnet new -i <PATH>
 ```
 
-### run 
+Where `<PATH>` is the path to the folder containing .template.config.
+
+### run
 
 ```
-dotnet new sts
+dotnet new sts -n YourCompany.Sts
 ```
+
+Use the `-n` or `--name` parameter to change the name of the output created. This string is also used to substitute the namespace name in the .cs file for the project.
 
 ### Setup, Using the application for your System
 
@@ -110,7 +124,7 @@ $mypwd = ConvertTo-SecureString -String "1234" -Force -AsPlainText
 Get-ChildItem -Path cert:\localMachine\my\"The thumbprint..." | Export-PfxCertificate -FilePath C:\git\sts_dev_cert.pfx -Password $mypwd
 ```
 
-## Credits, Used NuGet packages + ASP.NET Core 2.1 standard packages
+## Credits, Used NuGet packages + ASP.NET Core 3.1 standard packages
 
 - IdentityServer4
 - IdentityServer4.AspNetIdentity
@@ -118,7 +132,8 @@ Get-ChildItem -Path cert:\localMachine\my\"The thumbprint..." | Export-PfxCertif
 - Microsoft.IdentityModel.Clients.ActiveDirectory
 - Sendgrid
 - NWebsec.AspNetCore.Middleware
-	
+- Serilog
+
 ## Links
 
 http://docs.identityserver.io/en/release/
